@@ -19,45 +19,28 @@ class GameScene: SKScene {
     
     var userLabel = SKLabelNode(text: "")
     
-    var equations: [Equation]
+    var equations = [Equation]()
     var deletionTimer: Timer?
-
+    var generateEquationTimer: Timer?
+    
     override init(size: CGSize) {
-        func generateEquations(count: Int) -> [Equation] {
-            var equationArray = [Equation]()
-            for _ in 1...count {
-                equationArray.append(Equation())
-            }
-            return equationArray
-        }
-        
-        self.equations = generateEquations(count: 10)
-        
         super.init(size: size)
+        
+        self.generateEquationTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(spawnEqation), userInfo: nil, repeats: true)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func sceneDidLoad() {
-
+        
     }
     
     override func didMove(to view: SKView) {
-        for equation in equations {
-            let label = SKLabelNode(text: equation.label)
-            label.position = CGPoint(
-                x: Double.random(in: 1...Double(frame.height)),
-                y: Double.random(in: 1...Double(frame.width - label.frame.height * 2)))
-            label.name = String(describing: equation.correctResult)
-            label.physicsBody = SKPhysicsBody()
-            label.physicsBody?.affectedByGravity = false
-            label.physicsBody?.isDynamic = true
-            label.physicsBody?.applyImpulse(CGVector(dx: 10000, dy: 0))
-            scene?.addChild(label)
-            
-        }
+        scene?.physicsWorld.gravity = CGVector(dx: 0.0, dy: -0.1)
+        
+        
         scene?.addChild(userLabel)
         userLabel.name = "UserInput"
         userLabel.position.x = frame.midX
@@ -65,15 +48,15 @@ class GameScene: SKScene {
     }
     
     func touchDown(atPoint pos : CGPoint) {
-
+        
     }
     
     func touchMoved(toPoint pos : CGPoint) {
-
+        
     }
     
     func touchUp(atPoint pos : CGPoint) {
-
+        
     }
     
     override func mouseDown(with event: NSEvent) {
@@ -87,11 +70,11 @@ class GameScene: SKScene {
     
     override func keyDown(with event: NSEvent) {
         self.deletionTimer?.invalidate()
-
+        
         if let character = event.characters {
             self.userLabel.text?.append(character)
         }
-                
+        
         for equation in equations {
             if String(describing: equation.correctResult) == userLabel.text {
                 self.equations.removeAll { $0 == equation }
@@ -114,7 +97,20 @@ class GameScene: SKScene {
         
     }
     
-    func startSpawningWords(interval: TimeInterval) {
+    @objc func spawnEqation() {
+        let newEquation = Equation()
+        self.equations.append(newEquation)
         
+        let label = SKLabelNode(text: newEquation.label)
+        label.position = CGPoint(
+            x: Double.random(in: 1...Double(frame.height)),
+            y: Double.random(in: (label.frame.width)...Double(frame.width - label.frame.width))
+        )
+        label.name = String(describing: newEquation.correctResult)
+        label.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 20))
+        label.physicsBody?.affectedByGravity = true
+        label.physicsBody?.isDynamic = true
+        label.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -10))
+        scene?.addChild(label)
     }
 }
