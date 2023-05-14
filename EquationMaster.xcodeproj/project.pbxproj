@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7F334F252A0ED35A0024ADD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F334F242A0ED35A0024ADD1 /* AppDelegate.swift */; };
-		7F334F272A0ED35A0024ADD1 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7F334F262A0ED35A0024ADD1 /* GameScene.sks */; };
-		7F334F292A0ED35A0024ADD1 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7F334F282A0ED35A0024ADD1 /* Actions.sks */; };
 		7F334F2B2A0ED35A0024ADD1 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F334F2A2A0ED35A0024ADD1 /* GameScene.swift */; };
 		7F334F2D2A0ED35A0024ADD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F334F2C2A0ED35A0024ADD1 /* ViewController.swift */; };
 		7F334F2F2A0ED35B0024ADD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F334F2E2A0ED35B0024ADD1 /* Assets.xcassets */; };
@@ -17,6 +15,7 @@
 		7F334F3D2A0ED35B0024ADD1 /* EquationMasterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F334F3C2A0ED35B0024ADD1 /* EquationMasterTests.swift */; };
 		7F334F472A0ED35B0024ADD1 /* EquationMasterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F334F462A0ED35B0024ADD1 /* EquationMasterUITests.swift */; };
 		7F334F492A0ED35B0024ADD1 /* EquationMasterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F334F482A0ED35B0024ADD1 /* EquationMasterUITestsLaunchTests.swift */; };
+		7F334F562A0ED3860024ADD1 /* Equation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F334F552A0ED3860024ADD1 /* Equation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +38,6 @@
 /* Begin PBXFileReference section */
 		7F334F212A0ED35A0024ADD1 /* EquationMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EquationMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F334F242A0ED35A0024ADD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7F334F262A0ED35A0024ADD1 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		7F334F282A0ED35A0024ADD1 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		7F334F2A2A0ED35A0024ADD1 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		7F334F2C2A0ED35A0024ADD1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7F334F2E2A0ED35B0024ADD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +48,7 @@
 		7F334F422A0ED35B0024ADD1 /* EquationMasterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EquationMasterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F334F462A0ED35B0024ADD1 /* EquationMasterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationMasterUITests.swift; sourceTree = "<group>"; };
 		7F334F482A0ED35B0024ADD1 /* EquationMasterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationMasterUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7F334F552A0ED3860024ADD1 /* Equation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,13 +100,12 @@
 			isa = PBXGroup;
 			children = (
 				7F334F242A0ED35A0024ADD1 /* AppDelegate.swift */,
-				7F334F262A0ED35A0024ADD1 /* GameScene.sks */,
-				7F334F282A0ED35A0024ADD1 /* Actions.sks */,
 				7F334F2A2A0ED35A0024ADD1 /* GameScene.swift */,
 				7F334F2C2A0ED35A0024ADD1 /* ViewController.swift */,
 				7F334F2E2A0ED35B0024ADD1 /* Assets.xcassets */,
 				7F334F302A0ED35B0024ADD1 /* Main.storyboard */,
 				7F334F332A0ED35B0024ADD1 /* EquationMaster.entitlements */,
+				7F334F552A0ED3860024ADD1 /* Equation.swift */,
 			);
 			path = EquationMaster;
 			sourceTree = "<group>";
@@ -234,9 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F334F272A0ED35A0024ADD1 /* GameScene.sks in Resources */,
 				7F334F2F2A0ED35B0024ADD1 /* Assets.xcassets in Resources */,
-				7F334F292A0ED35A0024ADD1 /* Actions.sks in Resources */,
 				7F334F322A0ED35B0024ADD1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,6 +260,7 @@
 				7F334F2D2A0ED35A0024ADD1 /* ViewController.swift in Sources */,
 				7F334F2B2A0ED35A0024ADD1 /* GameScene.swift in Sources */,
 				7F334F252A0ED35A0024ADD1 /* AppDelegate.swift in Sources */,
+				7F334F562A0ED3860024ADD1 /* Equation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
