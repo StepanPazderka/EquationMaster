@@ -100,7 +100,7 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         guard let nodes = scene?.children else { return }
         for node in nodes {
-            if node.position.y > frame.height {
+            if node.position.y < -100 {
                 node.removeFromParent()
             }
         }
@@ -112,8 +112,8 @@ class GameScene: SKScene {
         
         let label = SKLabelNode(text: newEquation.label)
         label.position = CGPoint(
-            x: Double.random(in: 1...Double(frame.height)),
-            y: Double.random(in: (label.frame.width)...Double(frame.width - label.frame.width))
+            x: Double.random(in: label.frame.width...Double(frame.width - label.frame.width)),
+            y: frame.height
         )
         label.name = String(describing: newEquation.correctResult)
         label.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 20))
