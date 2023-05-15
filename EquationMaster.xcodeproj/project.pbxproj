@@ -16,6 +16,7 @@
 		7F334F472A0ED35B0024ADD1 /* EquationMasterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F334F462A0ED35B0024ADD1 /* EquationMasterUITests.swift */; };
 		7F334F492A0ED35B0024ADD1 /* EquationMasterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F334F482A0ED35B0024ADD1 /* EquationMasterUITestsLaunchTests.swift */; };
 		7F334F562A0ED3860024ADD1 /* Equation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F334F552A0ED3860024ADD1 /* Equation.swift */; };
+		7F334F5A2A1208460024ADD1 /* ExplosionParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7F334F592A1208460024ADD1 /* ExplosionParticle.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		7F334F462A0ED35B0024ADD1 /* EquationMasterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationMasterUITests.swift; sourceTree = "<group>"; };
 		7F334F482A0ED35B0024ADD1 /* EquationMasterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationMasterUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7F334F552A0ED3860024ADD1 /* Equation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equation.swift; sourceTree = "<group>"; };
+		7F334F592A1208460024ADD1 /* ExplosionParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ExplosionParticle.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				7F334F242A0ED35A0024ADD1 /* AppDelegate.swift */,
 				7F334F2A2A0ED35A0024ADD1 /* GameScene.swift */,
+				7F334F592A1208460024ADD1 /* ExplosionParticle.sks */,
 				7F334F2C2A0ED35A0024ADD1 /* ViewController.swift */,
 				7F334F2E2A0ED35B0024ADD1 /* Assets.xcassets */,
 				7F334F302A0ED35B0024ADD1 /* Main.storyboard */,
@@ -231,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F334F5A2A1208460024ADD1 /* ExplosionParticle.sks in Resources */,
 				7F334F2F2A0ED35B0024ADD1 /* Assets.xcassets in Resources */,
 				7F334F322A0ED35B0024ADD1 /* Main.storyboard in Resources */,
 			);

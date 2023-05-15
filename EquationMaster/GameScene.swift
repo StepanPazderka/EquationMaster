@@ -81,12 +81,16 @@ class GameScene: SKScene {
                 
                 self.enumerateChildNodes(withName: String(describing: equation.correctResult)) { node, pointer in
                     node.removeFromParent()
+                    
+                    self.explodeEquation(label: node)
                 }
-                
-                self.userLabel.text?.removeAll()
+                DispatchQueue.global().async {
+                    sleep(1)
+                    self.userLabel.text?.removeAll()
+                }
             }
         }
-        self.deletionTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(deleteWhatUserTyped), userInfo: nil, repeats: false)
+        self.deletionTimer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(deleteWhatUserTyped), userInfo: nil, repeats: false)
     }
     
     @objc func deleteWhatUserTyped() {
@@ -94,7 +98,12 @@ class GameScene: SKScene {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        
+        guard let nodes = scene?.children else { return }
+        for node in nodes {
+            if node.position.y > frame.height {
+                node.removeFromParent()
+            }
+        }
     }
     
     @objc func spawnEqation() {
@@ -112,5 +121,14 @@ class GameScene: SKScene {
         label.physicsBody?.isDynamic = true
         label.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -10))
         scene?.addChild(label)
+    }
+    
+    func explodeEquation(label: SKNode) {
+        if let explosionEffect = SKEmitterNode(fileNamed: "ExplosionParticle") {
+            explosionEffect.position = label.position
+            addChild(explosionEffect)
+            let removeAction = SKAction.sequence([SKAction.wait(forDuration: 2.0), SKAction.removeFromParent()])
+            explosionEffect.run(removeAction)
+        }
     }
 }
