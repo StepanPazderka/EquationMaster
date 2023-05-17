@@ -24,8 +24,10 @@ struct Equation: Equatable {
             self.correctResult = Int(firstNumber - secondNumber)
             self.label = "\(firstNumber) - \(secondNumber)"
         case "/":
-            self.correctResult = Int(firstNumber / secondNumber)
-            self.label = "\(firstNumber) / \(secondNumber)"
+            let (smallerNumber, largerNumber) = firstNumber < secondNumber ? (firstNumber, secondNumber) : (secondNumber, firstNumber)
+            let modulo = largerNumber % smallerNumber
+            self.correctResult = (largerNumber - modulo) / smallerNumber
+            self.label = "\(largerNumber - modulo) / \(smallerNumber)"
         case "*":
             self.correctResult = Int(firstNumber * secondNumber)
             self.label = "\(firstNumber) * \(secondNumber)"

@@ -111,8 +111,10 @@ class GameScene: SKScene {
         self.equations.append(newEquation)
         
         let label = SKLabelNode(text: newEquation.label)
+        let lowerBound = label.frame.width
+        let upperBound = Double(frame.width) - label.frame.width
         label.position = CGPoint(
-            x: Double.random(in: label.frame.width...Double(frame.width - label.frame.width)),
+            x: Double.random(in: lowerBound..<upperBound),
             y: frame.height
         )
         label.name = String(describing: newEquation.correctResult)
@@ -126,6 +128,13 @@ class GameScene: SKScene {
     func explodeEquation(label: SKNode) {
         if let explosionEffect = SKEmitterNode(fileNamed: "ExplosionParticle") {
             explosionEffect.position = label.position
+            
+            let texture = view?.texture(from: label)
+            
+            if let texture {
+                explosionEffect.particleTexture = texture
+            }
+            
             addChild(explosionEffect)
             let removeAction = SKAction.sequence([SKAction.wait(forDuration: 2.0), SKAction.removeFromParent()])
             explosionEffect.run(removeAction)
