@@ -71,6 +71,13 @@ class GameScene: SKScene {
     override func keyDown(with event: NSEvent) {
         self.deletionTimer?.invalidate()
         
+        let isBackspace = event.keyCode == 51
+        let isReturn = event.keyCode == 36
+        
+        if isBackspace || isReturn {
+            self.userLabel.text?.removeAll()
+        }
+        
         if let character = event.characters {
             self.userLabel.text?.append(character)
         }
