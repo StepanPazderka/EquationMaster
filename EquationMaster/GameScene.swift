@@ -17,6 +17,14 @@ class GameScene: SKScene {
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
+    lazy var scoreLabel: SKLabelNode = {
+        let view = SKLabelNode(text: "0")
+        view.fontColor = .yellow
+        view.position = CGPoint(x: (frame.minX + view.frame.width), y: (frame.maxY - view.frame.height - 10))
+        view.horizontalAlignmentMode = .left
+        return view
+    }()
+    
     var userLabel = SKLabelNode(text: "")
     
     var equations = [Equation]()
@@ -39,9 +47,8 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         scene?.physicsWorld.gravity = CGVector(dx: 0.0, dy: -0.1)
-        
-        
         scene?.addChild(userLabel)
+        scene?.addChild(scoreLabel)
         userLabel.name = "UserInput"
         userLabel.position.x = frame.midX
         userLabel.position.y = frame.midY
@@ -90,6 +97,11 @@ class GameScene: SKScene {
                     node.removeFromParent()
                     
                     self.explodeEquation(label: node)
+                    
+                    if let scoreLabel = Int(self.scoreLabel.text ?? "") {
+                        self.scoreLabel.text = "\(scoreLabel + equation.correctResult)"
+                    }
+                    
                 }
                 DispatchQueue.global().async {
                     sleep(1)
