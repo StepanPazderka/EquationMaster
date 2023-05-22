@@ -51,18 +51,29 @@ class GameScene: SKScene {
     lazy var countdownFinishedLabel: SKLabelNode = {
         var view = SKLabelNode(text: "Game Finished")
         view.position = CGPoint(x: frame.midX, y: frame.midY)
-        view.position.y += view.frame.height + 5
+        view.position.y += view.frame.height + 25
         view.fontColor = .cyan
-        view.fontSize = 100
+        view.fontSize = 60
+        view.fontName = "Avenir-Bold"
         return view
     }()
 
     lazy var finalScoreLabel: SKLabelNode = {
         var view = SKLabelNode(text: "Your Score: ")
         view.position = CGPoint(x: frame.midX, y: frame.midY)
-        view.position.y -= view.frame.height - 5
-        view.fontSize = 60
+        view.position.y += 20
+        view.fontSize = 20
         view.fontColor = .yellow
+        return view
+    }()
+    
+    lazy var scoreNumber: SKLabelNode = {
+        var view = SKLabelNode(text: "")
+        view.position = CGPoint(x: frame.midX, y: frame.midY)
+        view.position.y -= view.frame.height + 50
+        view.fontSize = 80
+        view.fontColor = .yellow
+        view.fontName = "Avenir-Bold"
         return view
     }()
     
@@ -78,7 +89,8 @@ class GameScene: SKScene {
                 
                 self.scene?.addChild(self.countdownFinishedLabel)
                 self.scene?.addChild(self.finalScoreLabel)
-                self.finalScoreLabel.text?.append(self.scoreLabel.text ?? "")
+                self.scene?.addChild(self.scoreNumber)
+                self.scoreNumber.text?.append(self.scoreLabel.text ?? "")
                 self.scene?.isPaused = true
                 return
             }
@@ -147,6 +159,8 @@ class GameScene: SKScene {
                 gameMasterDelegate?.startNewGame()
             }
         }
+        
+        guard state == .running else { return }
         
         if let character = event.characters {
             self.userLabel.text?.append(character)
