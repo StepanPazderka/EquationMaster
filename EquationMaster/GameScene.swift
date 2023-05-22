@@ -10,8 +10,11 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    var state: GameState = .running
+    
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
+    var gameMasterDelegate: GameMasterDelegate?
     
     private var lastUpdateTime : TimeInterval = 0
     private var label : SKLabelNode?
@@ -65,13 +68,14 @@ class GameScene: SKScene {
     
     override init(size: CGSize) {
         super.init(size: size)
-        
         self.generateEquationTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(spawnEqation), userInfo: nil, repeats: true)
         
         self.remainingTimeTimer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true) { [weak self] _ in
             guard let self else { return }
             
             guard self.milisecondsRemaning > 0 else {
+                self.state = .finished
+                
                 self.scene?.addChild(self.countdownFinishedLabel)
                 self.scene?.addChild(self.finalScoreLabel)
                 self.finalScoreLabel.text?.append(self.scoreLabel.text ?? "")
@@ -135,7 +139,13 @@ class GameScene: SKScene {
         let isReturn = event.keyCode == 36
         
         if isBackspace || isReturn {
-            self.userLabel.text?.removeAll()
+            if state == .running {
+                self.userLabel.text?.removeAll()
+            }
+            
+            if state == .finished {
+                gameMasterDelegate?.startNewGame()
+            }
         }
         
         if let character = event.characters {

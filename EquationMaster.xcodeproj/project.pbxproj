@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F16AE092A1B8DC00030F17F /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F16AE082A1B8DC00030F17F /* GameState.swift */; };
 		7F334F252A0ED35A0024ADD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F334F242A0ED35A0024ADD1 /* AppDelegate.swift */; };
 		7F334F2B2A0ED35A0024ADD1 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F334F2A2A0ED35A0024ADD1 /* GameScene.swift */; };
 		7F334F2D2A0ED35A0024ADD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F334F2C2A0ED35A0024ADD1 /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F16AE082A1B8DC00030F17F /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		7F334F212A0ED35A0024ADD1 /* EquationMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EquationMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F334F242A0ED35A0024ADD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F334F2A2A0ED35A0024ADD1 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 		7F334F182A0ED35A0024ADD1 = {
 			isa = PBXGroup;
 			children = (
+				7F16AE082A1B8DC00030F17F /* GameState.swift */,
 				7F334F232A0ED35A0024ADD1 /* EquationMaster */,
 				7F334F3B2A0ED35B0024ADD1 /* EquationMasterTests */,
 				7F334F452A0ED35B0024ADD1 /* EquationMasterUITests */,
@@ -263,6 +266,7 @@
 			files = (
 				7F334F2D2A0ED35A0024ADD1 /* ViewController.swift in Sources */,
 				7F334F2B2A0ED35A0024ADD1 /* GameScene.swift in Sources */,
+				7F16AE092A1B8DC00030F17F /* GameState.swift in Sources */,
 				7F334F252A0ED35A0024ADD1 /* AppDelegate.swift in Sources */,
 				7F334F562A0ED3860024ADD1 /* Equation.swift in Sources */,
 			);
