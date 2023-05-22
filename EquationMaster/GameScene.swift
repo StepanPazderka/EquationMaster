@@ -45,6 +45,24 @@ class GameScene: SKScene {
     var generateEquationTimer: Timer?
     var remainingTimeTimer: Timer?
     
+    lazy var countdownFinishedLabel: SKLabelNode = {
+        var view = SKLabelNode(text: "Game Finished")
+        view.position = CGPoint(x: frame.midX, y: frame.midY)
+        view.position.y += view.frame.height + 5
+        view.fontColor = .cyan
+        view.fontSize = 100
+        return view
+    }()
+
+    lazy var finalScoreLabel: SKLabelNode = {
+        var view = SKLabelNode(text: "Your Score: ")
+        view.position = CGPoint(x: frame.midX, y: frame.midY)
+        view.position.y -= view.frame.height - 5
+        view.fontSize = 60
+        view.fontColor = .yellow
+        return view
+    }()
+    
     override init(size: CGSize) {
         super.init(size: size)
         
@@ -54,6 +72,9 @@ class GameScene: SKScene {
             guard let self else { return }
             
             guard self.milisecondsRemaning > 0 else {
+                self.scene?.addChild(self.countdownFinishedLabel)
+                self.scene?.addChild(self.finalScoreLabel)
+                self.finalScoreLabel.text?.append(self.scoreLabel.text ?? "")
                 self.scene?.isPaused = true
                 return
             }
@@ -65,8 +86,6 @@ class GameScene: SKScene {
             
             let text = String(format: "%02d:%02d", seconds, milliseconds)
             self.timeLabel.text = text
-            
-            
         }
     }
     
