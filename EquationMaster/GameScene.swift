@@ -16,12 +16,25 @@ class GameScene: SKScene {
     private var lastUpdateTime : TimeInterval = 0
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
+
+    var milisecondsRemaning = 30000
     
     lazy var scoreLabel: SKLabelNode = {
         let view = SKLabelNode(text: "0")
         view.fontColor = .yellow
-        view.position = CGPoint(x: (frame.minX + view.frame.width), y: (frame.maxY - view.frame.height - 10))
+        view.position = CGPoint(x: (frame.minX + view.frame.width - 10), y: (frame.maxY - view.frame.height - 10))
         view.horizontalAlignmentMode = .left
+        return view
+    }()
+    
+    lazy var timeLabel: SKLabelNode = {
+        let seconds = milisecondsRemaning / 1000
+        let milliseconds = milisecondsRemaning % 1000
+        let text = String(format: "%02d:%02d", seconds, milliseconds)
+        let view = SKLabelNode(text: text)
+        view.fontColor = .cyan
+        view.position = CGPoint(x: frame.width - view.frame.width + 70, y: frame.maxY - view.frame.height - 10)
+        view.horizontalAlignmentMode = .right
         return view
     }()
     
@@ -30,11 +43,31 @@ class GameScene: SKScene {
     var equations = [Equation]()
     var deletionTimer: Timer?
     var generateEquationTimer: Timer?
+    var remainingTimeTimer: Timer?
     
     override init(size: CGSize) {
         super.init(size: size)
         
-        self.generateEquationTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(spawnEqation), userInfo: nil, repeats: true)
+        self.generateEquationTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(spawnEqation), userInfo: nil, repeats: true)
+        
+        self.remainingTimeTimer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true) { [weak self] _ in
+            guard let self else { return }
+            
+            guard self.milisecondsRemaning > 0 else {
+                self.scene?.isPaused = true
+                return
+            }
+            
+            self.milisecondsRemaning -= 1
+            
+            let seconds = self.milisecondsRemaning / 1000
+            let milliseconds = self.milisecondsRemaning % 1000
+            
+            let text = String(format: "%02d:%02d", seconds, milliseconds)
+            self.timeLabel.text = text
+            
+            
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,6 +82,7 @@ class GameScene: SKScene {
         scene?.physicsWorld.gravity = CGVector(dx: 0.0, dy: -0.1)
         scene?.addChild(userLabel)
         scene?.addChild(scoreLabel)
+        scene?.addChild(timeLabel)
         userLabel.name = "UserInput"
         userLabel.position.x = frame.midX
         userLabel.position.y = frame.midY
